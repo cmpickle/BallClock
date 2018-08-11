@@ -8,7 +8,7 @@ namespace BallClock
 {
     interface IBallStack
     {
-        void AddBall(Ball ball, IBallStack reciever);
+        void AddBall(Ball ball);
 
         void ReturnBalls(IBallQueue queue);
     }

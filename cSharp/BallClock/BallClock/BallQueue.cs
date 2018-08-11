@@ -24,9 +24,9 @@ namespace BallClock
             balls.Enqueue(queuedBall);
         }
 
-        public void Tick(IBallStack ballStack, IBallStack reciever)
+        public void Tick(IBallStack ballStack)
         {
-            ballStack.AddBall(balls.Dequeue(), reciever);
+            ballStack.AddBall(balls.Dequeue());
         }
 
         public override String ToString()

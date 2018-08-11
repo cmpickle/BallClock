@@ -12,16 +12,18 @@ namespace BallClock
     {
         int capacity;
         Stack<Ball> balls;
+        IBallStack reciever;
         IBallQueue queue;
 
-        public BallStack(int capacity, IBallQueue queue)
+        public BallStack(int capacity, IBallStack reciever, IBallQueue queue)
         {
             this.capacity = capacity;
+            this.reciever = reciever;
             this.queue = queue;
             this.balls = new Stack<Ball>();
         }
 
-        public void AddBall(Ball ball, IBallStack reciever)
+        public void AddBall(Ball ball)
         {
             if(balls.Count == capacity)
             {
@@ -31,7 +33,7 @@ namespace BallClock
                     queue.QueueBall(ball);
                     return;
                 }
-                reciever.AddBall(ball, reciever);
+                reciever.AddBall(ball);
                 return;
             }
             balls.Push(ball);
