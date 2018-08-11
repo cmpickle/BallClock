@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="BallClock.cs" />
     <Compile Include="BallQueue.cs" />
     <Compile Include="BallStack.cs" />
     <Compile Include="IBallQueue.cs" />

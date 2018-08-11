@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BallClock
 {
-    class BallClock
+    class BallClock : IComparable
     {
         BallQueue queue;
         BallStack hoursStack;
@@ -45,6 +45,13 @@ namespace BallClock
             result += "\n";
 
             return result;
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            BallClock c = (BallClock)obj;
+            return String.Compare(this.queue.ToString(), c.queue.ToString());
+
         }
     }
 }

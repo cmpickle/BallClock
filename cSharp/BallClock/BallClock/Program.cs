@@ -10,26 +10,39 @@ namespace BallClock
     {
         static void Main(string[] args)
         {
-            BallQueue queue = new BallQueue(27);
-            BallStack hoursStack = new BallStack(11, null, queue, true);
-            BallStack fiveMinutesStack = new BallStack(11, hoursStack, queue);
-            BallStack minutesStack = new BallStack(4, fiveMinutesStack, queue);
-
-            Console.WriteLine(queue.ToString());
-            Console.WriteLine();
-
-            int length = 120;
-            for(int i = 0; i < length; ++i)
+            switch(args[0])
             {
-                queue.Tick(minutesStack);
-                Console.WriteLine(queue.ToString());
-                Console.WriteLine(minutesStack.ToString());
-                Console.WriteLine(fiveMinutesStack.ToString());
-                Console.WriteLine(hoursStack.ToString());
-                Console.WriteLine();
+                case "--repetitionTime":
+                    int days;
+                    if(!Int32.TryParse(args[1], out days))
+                    {
+                        Console.WriteLine($"{args[1]} is not a valid option for repetitionTime. Please enter the number of balls to use in the clock.");
+                        break;
+                    }
+                    Console.WriteLine(repetitionTime(days));
+                    break;
+                default:
+                    Console.WriteLine($"{args[0]}  is not a valid command");
+                    break;
             }
+            BallClock clock = new BallClock(27);
+
+            //Console.WriteLine(clock.ToString());
+
+            //int length = 120;
+            //for(int i = 0; i < length; ++i)
+            //{
+            //    clock.Tick();
+            //    Console.WriteLine(clock.ToString());
+            //}
 
             Console.Read();
+        }
+
+        public static string repetitionTime(int balls)
+        {
+            int days = 0;
+            return $"{balls} balls cycle after {days} days";
         }
     }
 }
