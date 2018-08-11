@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace BallClock
 {
     interface IBallQueue
     {
-        Ball Tick();
+        void Tick(IBallStack ballStack, IBallStack reciever);
 
-        void QueueBalls(IEnumerable<Ball> balls);
+        void QueueBall(Ball ball);
     }
 }

@@ -19,14 +19,14 @@ namespace BallClock
             }
         }
 
-        public void QueueBalls(IEnumerable<Ball> balls)
+        public void QueueBall(Ball queuedBall)
         {
-            throw new NotImplementedException();
+            balls.Enqueue(queuedBall);
         }
 
-        public Ball Tick()
+        public void Tick(IBallStack ballStack, IBallStack reciever)
         {
-            throw new NotImplementedException();
+            ballStack.AddBall(balls.Dequeue(), reciever);
         }
 
         public override String ToString()

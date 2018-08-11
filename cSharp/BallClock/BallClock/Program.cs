@@ -12,6 +12,37 @@ namespace BallClock
         {
             BallQueue queue = new BallQueue(5);
             Console.WriteLine(queue.ToString());
+            Console.WriteLine();
+            BallStack ballStack = new BallStack(4, queue);
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
+
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
+
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
+
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
+
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
+
+            queue.Tick(ballStack, null);
+            Console.WriteLine(queue.ToString());
+            Console.WriteLine(ballStack.ToString());
+            Console.WriteLine();
             Console.Read();
         }
     }

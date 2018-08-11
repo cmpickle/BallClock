@@ -45,12 +45,14 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="BallQueue.cs" />
+    <Compile Include="BallStack.cs" />
     <Compile Include="IBallQueue.cs" />
     <Compile Include="IBallStack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
