@@ -42,6 +42,18 @@ namespace BallClock
         public static string repetitionTime(int balls)
         {
             int days = 0;
+
+            BallClock increment = new BallClock(balls);
+            do
+            {
+                for(int i = 0; i < 1440; ++i)
+                {
+                    increment.Tick();
+                }
+                ++days;
+            }
+            while (!increment.isStartingOrder());
+
             return $"{balls} balls cycle after {days} days";
         }
     }

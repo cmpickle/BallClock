@@ -19,13 +19,17 @@ namespace BallClock
         public BallStack(int capacity, IBallStack reciever, IBallQueue queue, bool hours = false)
         {
             this.capacity = capacity;
+            if(hours)
+            {
+                capacity += 1;
+            }
             this.reciever = reciever;
             this.queue = queue;
             this.balls = new Stack<Ball>();
             this.hours = hours;
             if(hours)
             {
-                balls.Push(new Ball { Id = 0 });
+                balls.Push(new Ball(0) { Id = 0 });
             }
         }
 

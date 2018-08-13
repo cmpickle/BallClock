@@ -15,7 +15,7 @@ namespace BallClock
         {
             for (int i = 0; i < numBalls; ++i)
             {
-                balls.Enqueue(new Ball());
+                balls.Enqueue(new Ball(i+1));
             }
         }
 
@@ -29,9 +29,19 @@ namespace BallClock
             ballStack.AddBall(balls.Dequeue());
         }
 
+        public int getCount()
+        {
+            return balls.Count;
+        }
+
         public override String ToString()
         {
             return new JavaScriptSerializer().Serialize(balls.ToList());
+        }
+
+        public Ball[] ToArray()
+        {
+            return balls.ToArray();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BallClock
 {
-    class BallClock : IComparable
+    class BallClock
     {
         BallQueue queue;
         BallStack hoursStack;
@@ -16,7 +16,7 @@ namespace BallClock
         public BallClock(int balls)
         {
             queue = new BallQueue(balls);
-            hoursStack = new BallStack(11, null, queue, true);
+            hoursStack = new BallStack(11, null, queue);
             fiveMinutesStack = new BallStack(11, hoursStack, queue);
             minutesStack = new BallStack(4, fiveMinutesStack, queue);
         }
@@ -47,11 +47,17 @@ namespace BallClock
             return result;
         }
 
-        int IComparable.CompareTo(object obj)
+        public bool isStartingOrder()
         {
-            BallClock c = (BallClock)obj;
-            return String.Compare(this.queue.ToString(), c.queue.ToString());
-
+            Ball[] balls = queue.ToArray();
+            for(int i = 0; i < queue.getCount(); ++i)
+            {
+                if(balls[i].Id != i + 1)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
