@@ -61,5 +61,16 @@ namespace BallClock
         {
             return new JavaScriptSerializer().Serialize(balls.ToList());
         }
+
+        public int[] ToArray()
+        {
+            int[] result = new int[balls.Count];
+
+            for(int i = 0; i < balls.Count; ++i)
+            {
+                result[i] = balls.ElementAt(i).Id;
+            }
+            return result;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,15 +50,25 @@ namespace BallClock
 
         public bool isStartingOrder()
         {
-            Ball[] balls = queue.ToArray();
+            int[] balls = queue.ToArray();
             for(int i = 0; i < queue.getCount(); ++i)
             {
-                if(balls[i].Id != i + 1)
+                if(balls[i] != i + 1)
                 {
                     return false;
                 }
             }
             return true;
+        }
+
+        public string ToJson()
+        {
+            var Min = minutesStack.ToArray();
+            var FiveMin = fiveMinutesStack.ToArray();
+            var Hour = hoursStack.ToArray();
+            var Main = queue.ToArray();
+            var result = new { Min, FiveMin, Hour, Main };
+            return JsonConvert.SerializeObject(result);
         }
     }
 }

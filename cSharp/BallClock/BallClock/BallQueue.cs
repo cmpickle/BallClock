@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,15 @@ namespace BallClock
             return new JavaScriptSerializer().Serialize(balls.ToList());
         }
 
-        public Ball[] ToArray()
+        public int[] ToArray()
         {
-            return balls.ToArray();
+            int[] result = new int[balls.Count];
+
+            for(int i = 0; i < balls.Count; ++i)
+            {
+                result[i] = balls.ElementAt(i).Id;
+            }
+            return result;
         }
     }
 }
