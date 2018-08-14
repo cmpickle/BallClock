@@ -1,6 +1,8 @@
 package BallClock
 
 import (
+	"fmt"
+
 	"github.com/cmpickle/ballClock/go/ballClock/collections"
 	"github.com/golang-collections/collections/stack"
 )
@@ -14,7 +16,11 @@ type BallClock struct {
 }
 
 func New(count int) *BallClock {
-	return &BallClock{count, stack.New(), stack.New(), stack.New(), collections.New()}
+	ballClock := &BallClock{count, stack.New(), stack.New(), stack.New(), collections.New()}
+	for i := 0; i < count; i++ {
+		ballClock.Main.Enqueue(i)
+	}
+	return ballClock
 }
 
 func (ballClock *BallClock) Tick() {
@@ -53,12 +59,20 @@ func (ballClock *BallClock) returnBalls(stack *stack.Stack) {
 	}
 }
 
-func (ballClock *BallClock) isStartingOrder() bool {
+func (ballClock *BallClock) IsStartingOrder() bool {
 	arr := ballClock.Main.ToArray()
 	for i := 0; i < ballClock.Main.Len(); i++ {
-		if arr[i] != i+1 {
+		if arr[i] != i {
 			return false
 		}
 	}
 	return true
+}
+
+func (ballClock *BallClock) ToString() string {
+	var result string
+	for i := 0; i < ballClock.Main.Len(); i++ {
+		result += " " + fmt.Sprintf("%v", ballClock.Main.ElementAt(i))
+	}
+	return result
 }

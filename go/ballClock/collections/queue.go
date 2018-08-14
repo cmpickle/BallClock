@@ -58,20 +58,20 @@ func (this *Queue) Peek() interface{} {
 	return this.start.value
 }
 
-func (this *Queue) ElementAt(pos int) interface{} {
+func (this *Queue) ElementAt(pos int) node {
 	curr := this.start
 
 	for i := 0; i < pos; i++ {
 		curr = curr.next
 	}
 
-	return curr
+	return *curr
 }
 
-func (this *Queue) ToArray() []interface{} {
-	a := make([]interface{}, this.Len())
+func (this *Queue) ToArray() []int {
+	a := make([]int, this.Len())
 	for i := 0; i < this.Len(); i++ {
-		a[i] = this.ElementAt(i)
+		a[i] = this.ElementAt(i).value.(int)
 	}
 	return a
 }
