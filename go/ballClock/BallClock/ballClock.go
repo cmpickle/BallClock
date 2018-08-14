@@ -1,7 +1,7 @@
 package BallClock
 
 import (
-	"github.com/golang-collections/collections/queue"
+	"github.com/cmpickle/ballClock/go/ballClock/collections"
 	"github.com/golang-collections/collections/stack"
 )
 
@@ -10,11 +10,11 @@ type BallClock struct {
 	Min     *stack.Stack
 	FiveMin *stack.Stack
 	Hour    *stack.Stack
-	Main    *queue.Queue
+	Main    *collections.Queue
 }
 
 func New(count int) *BallClock {
-	return &BallClock{count, stack.New(), stack.New(), stack.New(), queue.New()}
+	return &BallClock{count, stack.New(), stack.New(), stack.New(), collections.New()}
 }
 
 func (ballClock *BallClock) Tick() {
@@ -51,4 +51,14 @@ func (ballClock *BallClock) returnBalls(stack *stack.Stack) {
 			ballClock.Main.Enqueue(ball)
 		}
 	}
+}
+
+func (ballClock *BallClock) isStartingOrder() bool {
+	arr := ballClock.Main.ToArray()
+	for i := 0; i < ballClock.Main.Len(); i++ {
+		if arr[i] != i+1 {
+			return false
+		}
+	}
+	return true
 }
