@@ -40,13 +40,12 @@ func main() {
 
 		fmt.Printf("%v balls cycle after %v days.", balls, days)
 		break
+	case "--timedOutput":
+		ballClock = BallClock.New(20)
+		ballClock.Tick()
+		ballClock.Tick()
+		fmt.Println(string(ballClock.ToJson()))
 	default:
 		fmt.Printf("Please enter a valid command line option:\n\t--repetitionTime\n\t--timedOutput")
 	}
-
-	// fmt.Println(ballClock.Count)
-	// for i := 0; i < 1440*15; i++ {
-	// 	ballClock.Tick()
-	// }
-	// fmt.Println(ballClock.IsStartingOrder())
 }

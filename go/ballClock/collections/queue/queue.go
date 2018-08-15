@@ -1,4 +1,9 @@
-package collections
+package queue
+
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type (
 	Queue struct {
@@ -74,4 +79,12 @@ func (this *Queue) ToArray() []int {
 		a[i] = this.ElementAt(i).value.(int)
 	}
 	return a
+}
+
+func (this *Queue) ToJson() []byte {
+	result, err := json.Marshal(this.ToArray())
+	if err != nil {
+		fmt.Println("Error parsing queue to json " + err.Error())
+	}
+	return result
 }
