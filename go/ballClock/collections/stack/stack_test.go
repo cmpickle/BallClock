@@ -42,6 +42,26 @@ func Test(t *testing.T) {
 	}
 }
 
+func TestPeekNil(t *testing.T) {
+	s := New()
+
+	actual := s.Peek()
+
+	if actual != nil {
+		t.Errorf("Expected return of nil from empty Peek, actual %v", actual)
+	}
+}
+
+func TestPopNil(t *testing.T) {
+	s := New()
+
+	actual := s.Pop()
+
+	if actual != nil {
+		t.Errorf("Expected return of nil from empty Pop, actual %v", actual)
+	}
+}
+
 func TestElementAt(t *testing.T) {
 	s := New()
 
