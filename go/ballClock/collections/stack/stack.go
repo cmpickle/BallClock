@@ -61,7 +61,7 @@ func (this *Stack) ElementAt(pos int) node {
 func (this *Stack) ToArray() []int {
 	a := make([]int, this.Len())
 	for i := 0; i < this.Len(); i++ {
-		a[i] = this.ElementAt(i).value.(int)
+		a[this.Len()-1-i] = this.ElementAt(i).value.(int)
 	}
 	return a
 }
