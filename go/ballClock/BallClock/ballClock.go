@@ -31,6 +31,12 @@ func New(count int) *BallClock {
 	return ballClock
 }
 
+func (ballClock *BallClock) Ticks(minutes int) {
+	for i := 0; i < minutes; i++ {
+		ballClock.Tick()
+	}
+}
+
 func (ballClock *BallClock) Tick() {
 	ball := ballClock.Main.Dequeue()
 	if ball == nil {
@@ -70,7 +76,7 @@ func (ballClock *BallClock) returnBalls(stack *stack.Stack) {
 func (ballClock *BallClock) IsStartingOrder() bool {
 	arr := ballClock.Main.ToArray()
 	for i := 0; i < ballClock.Main.Len(); i++ {
-		if arr[i] != i {
+		if arr[i] != i+1 {
 			return false
 		}
 	}
