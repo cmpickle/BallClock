@@ -91,11 +91,3 @@ func (ballClock *BallClock) ToJson() []byte {
 	}
 	return result
 }
-
-func (ballClock *BallClock) ToString() string {
-	var result string
-	for i := 0; i < ballClock.Main.Len(); i++ {
-		result += " " + fmt.Sprintf("%v", ballClock.Main.ElementAt(i))
-	}
-	return result
-}
