@@ -53,7 +53,7 @@ func main() {
 			fmt.Println(fmt.Errorf("repetition time requires an integer parameter minutes greater than 0."))
 			return
 		}
-		if balls < 27 || balls > 127 {
+		if minutes < 1 {
 			fmt.Println(fmt.Errorf("repetition time requires an integer parameter minutes greater than 0."))
 			return
 		}
