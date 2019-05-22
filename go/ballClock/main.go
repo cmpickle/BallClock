@@ -12,7 +12,7 @@ func main() {
 	var ballClock *BallClock.BallClock
 
 	if len(os.Args) <= 1 {
-		fmt.Printf("Please enter a valid command line option:\n\t--repetitionTime\n\t--timedOutput")
+		fmt.Printf("Please enter a valid command line option:\n\t[--repetitionTime repetition-number]\n\t[--timedOutput number-of-balls amount-of-time]")
 		return
 	}
 	switch os.Args[1] {
