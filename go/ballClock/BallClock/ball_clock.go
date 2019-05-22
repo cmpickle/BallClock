@@ -74,9 +74,9 @@ func (ballClock *BallClock) returnBalls(stack *stack.Stack) {
 }
 
 func (ballClock *BallClock) IsStartingOrder() bool {
-	arr := ballClock.Main.ToArray()
+	// arr := ballClock.Main.ToArray()
 	for i := 0; i < ballClock.Main.Len(); i++ {
-		if arr[i] != i+1 {
+		if ballClock.Main.ElementAt(i).Value != i+1 {
 			return false
 		}
 	}

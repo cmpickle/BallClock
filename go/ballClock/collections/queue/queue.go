@@ -6,7 +6,7 @@ type (
 		length     int
 	}
 	node struct {
-		value interface{}
+		Value interface{}
 		next  *node
 	}
 )
@@ -29,12 +29,12 @@ func (this *Queue) Dequeue() interface{} {
 		this.start = this.start.next
 	}
 	this.length--
-	return n.value
+	return n.Value
 }
 
 // Put an item on the end of a queue
-func (this *Queue) Enqueue(value interface{}) {
-	n := &node{value, nil}
+func (this *Queue) Enqueue(Value interface{}) {
+	n := &node{Value, nil}
 	if this.length == 0 {
 		this.start = n
 		this.end = n
@@ -55,7 +55,7 @@ func (this *Queue) Peek() interface{} {
 	if this.length == 0 {
 		return nil
 	}
-	return this.start.value
+	return this.start.Value
 }
 
 func (this *Queue) ElementAt(pos int) node {
@@ -71,7 +71,7 @@ func (this *Queue) ElementAt(pos int) node {
 func (this *Queue) ToArray() []int {
 	a := make([]int, this.Len())
 	for i := 0; i < this.Len(); i++ {
-		a[i] = this.ElementAt(i).value.(int)
+		a[i] = this.ElementAt(i).Value.(int)
 	}
 	return a
 }
