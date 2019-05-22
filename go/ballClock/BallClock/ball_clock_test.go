@@ -114,11 +114,11 @@ func BenchmarkTick(b *testing.B) {
 	}
 }
 
-func BenchmarkTicks10(b *testing.B) {
+func BenchmarkTicks1440(b *testing.B) {
 	bc := New(30)
 
 	b.ResetTimer()
 	for i:=0; i < b.N; i++ {
-		bc.Ticks(10)
+		bc.Ticks(1440)
 	}
 }
