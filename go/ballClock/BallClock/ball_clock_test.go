@@ -93,3 +93,32 @@ func TestToJson(t *testing.T) {
 		t.Errorf("Expected %v, actual %v", expected, actual)
 	}
 }
+
+var result int
+
+func BenchmarkIsStartingOrder(b *testing.B) {
+	bc := New(27)
+
+	b.ResetTimer()
+	for i:=0; i < b.N; i++ {
+		bc.IsStartingOrder()
+	}
+}
+
+func BenchmarkTick(b *testing.B) {
+	bc := New(30)
+
+	b.ResetTimer()
+	for i:=0; i < b.N; i++ {
+		bc.Tick()
+	}
+}
+
+func BenchmarkTicks10(b *testing.B) {
+	bc := New(30)
+
+	b.ResetTimer()
+	for i:=0; i < b.N; i++ {
+		bc.Ticks(10)
+	}
+}
