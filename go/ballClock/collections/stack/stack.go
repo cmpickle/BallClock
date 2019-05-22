@@ -41,6 +41,21 @@ func (this *Stack) Pop() interface{} {
 	return n.value
 }
 
+// Pop the top item of the stack and return it
+func (this *Stack) Pop(amount int) *node {
+	if this.length < amount {
+		return nil
+	}
+
+	var result *node
+	for i:=0; i < amount; i++ {
+		result[i] = this.top
+	}
+	this.top = n.prev
+	this.length--
+	return n
+}
+
 // Push a value onto the top of the stack
 func (this *Stack) Push(value interface{}) {
 	n := &node{value, this.top}

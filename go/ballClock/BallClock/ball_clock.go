@@ -39,9 +39,9 @@ func (ballClock *BallClock) Ticks(minutes int) {
 
 func (ballClock *BallClock) Tick() {
 	ball := ballClock.Main.Dequeue()
-	if ball == nil {
-		return
-	}
+	// if ball == nil {
+	// 	return
+	// }
 
 	if ballClock.Min.Len() < 4 {
 		ballClock.Min.Push(ball)
