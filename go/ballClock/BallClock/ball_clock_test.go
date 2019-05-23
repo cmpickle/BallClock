@@ -100,8 +100,18 @@ func BenchmarkIsStartingOrder(b *testing.B) {
 	bc := New(27)
 
 	b.ResetTimer()
-	for i:=0; i < b.N; i++ {
+	for i := 0; i < b.N; i++ {
 		bc.IsStartingOrder()
+	}
+}
+
+func BenchmarkReturnBalls(b *testing.B) {
+	bc := New(30)
+	bc.Ticks(4)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		bc.returnBalls(bc.Min)
 	}
 }
 
@@ -109,16 +119,16 @@ func BenchmarkTick(b *testing.B) {
 	bc := New(30)
 
 	b.ResetTimer()
-	for i:=0; i < b.N; i++ {
+	for i := 0; i < b.N; i++ {
 		bc.Tick()
 	}
 }
 
-func BenchmarkTicks10(b *testing.B) {
+func BenchmarkTicks1440(b *testing.B) {
 	bc := New(30)
 
 	b.ResetTimer()
-	for i:=0; i < b.N; i++ {
-		bc.Ticks(10)
+	for i := 0; i < b.N; i++ {
+		bc.Ticks(1440)
 	}
 }
