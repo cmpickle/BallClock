@@ -1,13 +1,13 @@
 package queue
 
+import (
+	"github.com/cmpickle/ballClock/go/ballClock/collections/node"
+)
+
 type (
 	Queue struct {
-		start, end *node
+		start, end *node.Node
 		length     int
-	}
-	node struct {
-		Value interface{}
-		next  *node
 	}
 )
 
@@ -17,7 +17,7 @@ func New() *Queue {
 }
 
 // Take the next item off the front of the queue
-func (this *Queue) Dequeue() interface{} {
+func (this *Queue) Dequeue() *node.Node {
 	if this.length == 0 {
 		return nil
 	}
@@ -26,21 +26,40 @@ func (this *Queue) Dequeue() interface{} {
 		this.start = nil
 		this.end = nil
 	} else {
-		this.start = this.start.next
+		this.start = this.start.Next
 	}
 	this.length--
-	return n.Value
+	return n
 }
 
 // Put an item on the end of a queue
-func (this *Queue) Enqueue(Value interface{}) {
-	n := &node{Value, nil}
+func (this *Queue) Enqueue(n *node.Node) {
 	if this.length == 0 {
 		this.start = n
 		this.end = n
 	} else {
-		this.end.next = n
+		this.end.Next = n
 		this.end = n
+	}
+	this.length++
+}
+
+// Put an item on the end of a queue
+func (this *Queue) EnqueueN(nodes *node.Node, amount int) {
+	if this.length == 0 {
+		var end *node.Node
+		for i := 0; i < amount; i++ {
+			end = nodes.Next
+		}
+		this.start = nodes
+		this.end = end
+	} else {
+		var end *node.Node
+		for i := 0; i < amount; i++ {
+			end = nodes.Next
+		}
+		this.end.Next = nodes
+		this.end = end
 	}
 	this.length++
 }
@@ -58,11 +77,11 @@ func (this *Queue) Peek() interface{} {
 	return this.start.Value
 }
 
-func (this *Queue) ElementAt(pos int) node {
+func (this *Queue) ElementAt(pos int) node.Node {
 	curr := this.start
 
 	for i := 0; i < pos; i++ {
-		curr = curr.next
+		curr = curr.Next
 	}
 
 	return *curr
