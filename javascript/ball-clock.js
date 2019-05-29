@@ -60,12 +60,6 @@ class BallClock {
     }
     return true;
   }
-
-  // Count   int
-  // Min     *stack.Stack `json:"Min"`
-  // FiveMin *stack.Stack `json:"FiveMin"`
-  // Hour    *stack.Stack `json:"Hour"`
-  // Main    *queue.Queue `json:"Main"`
 }
 
 module.exports = BallClock;
