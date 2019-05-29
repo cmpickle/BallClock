@@ -1,12 +1,15 @@
+let Stack = require('./stack');
+let Queue = require('./queue');
+
 class BallClock {
   constructor(balls) {
     this.count = balls;
-    this.min = [];
-    this.fiveMin = [];
-    this.hour = [];
-    this.main = [];
+    this.min = new Stack();
+    this.fiveMin = new Stack();
+    this.hour = new Stack();
+    this.main = new Queue();
     for (let i = 0; i < this.count; i++) {
-      this.main.push(i + 1);
+      this.main.enqueue({ value: i + 1, next: undefined });
     }
   }
 
@@ -17,7 +20,7 @@ class BallClock {
   }
 
   tick() {
-    let ball = this.main.shift();
+    let ball = this.main.dequeue();
     if (ball === undefined) {
       return;
     }
@@ -37,7 +40,7 @@ class BallClock {
         } else {
           this.returnBalls(this.hour);
 
-          this.main.push(ball);
+          this.main.enqueue(ball);
         }
       }
     }
@@ -47,14 +50,14 @@ class BallClock {
     while (stack.length > 0) {
       let ball = stack.pop();
       if (ball !== undefined) {
-        this.main.push(ball);
+        this.main.enqueue(ball);
       }
     }
   }
 
   IsStartingOrder() {
     for (let i = 0; i < this.main.length; i++) {
-      if (this.main[i] !== i + 1) {
+      if (this.main.elementAt(i).value !== i + 1) {
         return false;
       }
     }
