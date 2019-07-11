@@ -3,6 +3,8 @@ package queue
 import (
 	"reflect"
 	"testing"
+
+	"github.com/cmpickle/ballClock/go/ballClock/collections/node"
 )
 
 func Test(t *testing.T) {
@@ -12,7 +14,7 @@ func Test(t *testing.T) {
 		t.Errorf("Length should be 0")
 	}
 
-	q.Enqueue(1)
+	q.Enqueue(&node.Node{1, nil})
 
 	if q.Len() != 1 {
 		t.Errorf("Length should be 1")
@@ -24,7 +26,7 @@ func Test(t *testing.T) {
 
 	v := q.Dequeue()
 
-	if v.(int) != 1 {
+	if v.Value.(int) != 1 {
 		t.Errorf("Dequeued value should be 1")
 	}
 
@@ -32,8 +34,8 @@ func Test(t *testing.T) {
 		t.Errorf("Empty queue should have no values")
 	}
 
-	q.Enqueue(1)
-	q.Enqueue(2)
+	q.Enqueue(&node.Node{1, nil})
+	q.Enqueue(&node.Node{2, nil})
 
 	if q.Len() != 2 {
 		t.Errorf("Length should be 2")
@@ -53,23 +55,23 @@ func Test(t *testing.T) {
 func TestElementAt(t *testing.T) {
 	s := New()
 
-	s.Enqueue(1)
-	s.Enqueue(2)
+	s.Enqueue(&node.Node{1, nil})
+	s.Enqueue(&node.Node{2, nil})
 
 	if s.ElementAt(0).Value.(int) != 1 {
-		t.Errorf("Element 0: expected 1 actual %v", s.ElementAt(0).value.(int))
+		t.Errorf("Element 0: expected 1 actual %v", s.ElementAt(0).Value.(int))
 	}
 
-	if s.ElementAt(1).value.(int) != 2 {
-		t.Errorf("Element 1: expected 2 actual %v", s.ElementAt(1).value.(int))
+	if s.ElementAt(1).Value.(int) != 2 {
+		t.Errorf("Element 1: expected 2 actual %v", s.ElementAt(1).Value.(int))
 	}
 }
 
 func TestToArray(t *testing.T) {
 	s := New()
 
-	s.Enqueue(1)
-	s.Enqueue(2)
+	s.Enqueue(&node.Node{1, nil})
+	s.Enqueue(&node.Node{2, nil})
 
 	actual := s.ToArray()
 	expected := []int{1, 2}

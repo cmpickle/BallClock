@@ -39,6 +39,7 @@ func (this *Queue) Init(amount int) {
 		prev = &node.Node{i, prev}
 	}
 	this.start = prev
+	this.length = amount
 }
 
 // Put an item on the end of a queue

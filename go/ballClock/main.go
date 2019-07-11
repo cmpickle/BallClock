@@ -5,11 +5,11 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/cmpickle/ballClock/go/ballClock/BallClock"
+	"github.com/cmpickle/ballClock/go/ballClock/ballclock"
 )
 
 func main() {
-	var ballClock *BallClock.BallClock
+	var ballClock *ballclock.BallClock
 
 	if len(os.Args) <= 1 {
 		fmt.Printf("Please enter a valid command line option:\n\t[--repetitionTime repetition-number]\n\t[--timedOutput number-of-balls amount-of-time]")
@@ -26,7 +26,7 @@ func main() {
 			fmt.Println(fmt.Errorf("repetition time requires an integer parameter between 27 and 127."))
 			return
 		}
-		ballClock = BallClock.New(balls)
+		ballClock = ballclock.New(balls)
 		days := 0
 		for {
 			ballClock.Ticks(1440)
@@ -57,7 +57,7 @@ func main() {
 			fmt.Println(fmt.Errorf("repetition time requires an integer parameter minutes greater than 0."))
 			return
 		}
-		ballClock = BallClock.New(balls)
+		ballClock = ballclock.New(balls)
 		ballClock.Ticks(minutes)
 		fmt.Println(string(ballClock.ToJson()))
 	default:
