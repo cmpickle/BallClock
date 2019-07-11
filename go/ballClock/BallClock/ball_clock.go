@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/cmpickle/ballClock/go/ballClock/collections/node"
 	"github.com/cmpickle/ballClock/go/ballClock/collections/queue"
 	"github.com/cmpickle/ballClock/go/ballClock/collections/stack"
 )
@@ -26,9 +25,10 @@ type BallClockJson struct {
 
 func New(count int) *BallClock {
 	ballClock := &BallClock{count, stack.New(), stack.New(), stack.New(), queue.New()}
-	for i := 0; i < count; i++ {
-		ballClock.Main.Enqueue(&node.Node{i + 1, nil})
-	}
+	ballClock.Main.Init(count)
+	// for i := 1; i <= count; i++ {
+	// 	ballClock.Main.Enqueue(&node.Node{i, nil})
+	// }
 	return ballClock
 }
 
@@ -63,16 +63,17 @@ func (ballClock *BallClock) Tick() {
 }
 
 func (ballClock *BallClock) returnBalls(stack *stack.Stack) {
-	for stack.Len() > 0 {
-		ball := stack.Pop()
-		if ball != nil {
-			ballClock.Main.Enqueue(ball)
-		}
+	// for stack.Len() > 0 {
+	var length = stack.Len()
+	balls := stack.PopN(length)
+	if balls != nil {
+		ballClock.Main.EnqueueN(balls, length)
 	}
+	// }
 }
 
 func (ballClock *BallClock) IsStartingOrder() bool {
-	for i := 0; i < ballClock.Main.Len(); i++ {
+	for i := 0; i < ballClock.Main.Len()-1; i++ {
 		if ballClock.Main.ElementAt(i).Value != i+1 {
 			return false
 		}

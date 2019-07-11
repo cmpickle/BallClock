@@ -19,7 +19,7 @@ func TestTick(t *testing.T) {
 
 	actual := bc.Min.Pop()
 
-	if actual != 1 {
+	if actual.Value != 1 {
 		t.Errorf("Expected 1 to be in minute stack after Tick, actual %v", actual)
 	}
 }
@@ -32,11 +32,11 @@ func TestTicks(t *testing.T) {
 	actualFiveMin := bc.FiveMin.Pop()
 	actualHour := bc.Hour.Pop()
 
-	if actualFiveMin != 11 {
+	if actualFiveMin.Value != 11 {
 		t.Errorf("Expected 5 to be in five minute stack after 65 Ticks, actual %v", actualFiveMin)
 	}
 
-	if actualHour != 6 {
+	if actualHour.Value != 6 {
 		t.Errorf("Expected 11 to be in hour stack after 65 Ticks, actual %v", actualHour)
 	}
 }

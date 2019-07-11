@@ -56,7 +56,7 @@ func TestElementAt(t *testing.T) {
 	s.Enqueue(1)
 	s.Enqueue(2)
 
-	if s.ElementAt(0).value.(int) != 1 {
+	if s.ElementAt(0).Value.(int) != 1 {
 		t.Errorf("Element 0: expected 1 actual %v", s.ElementAt(0).value.(int))
 	}
 

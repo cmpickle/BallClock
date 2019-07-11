@@ -32,6 +32,15 @@ func (this *Queue) Dequeue() *node.Node {
 	return n
 }
 
+func (this *Queue) Init(amount int) {
+	this.end = &node.Node{amount, nil}
+	var prev = this.end
+	for i := amount - 1; i > 0; i-- {
+		prev = &node.Node{i, prev}
+	}
+	this.start = prev
+}
+
 // Put an item on the end of a queue
 func (this *Queue) Enqueue(n *node.Node) {
 	if this.length == 0 {
@@ -48,20 +57,24 @@ func (this *Queue) Enqueue(n *node.Node) {
 func (this *Queue) EnqueueN(nodes *node.Node, amount int) {
 	if this.length == 0 {
 		var end *node.Node
-		for i := 0; i < amount; i++ {
-			end = nodes.Next
+		end = nodes
+		for i := 0; i < amount-1; i++ {
+			end = end.Next
 		}
 		this.start = nodes
 		this.end = end
+		this.end.Next = nil
 	} else {
 		var end *node.Node
-		for i := 0; i < amount; i++ {
-			end = nodes.Next
+		end = nodes
+		for i := 0; i < amount-1; i++ {
+			end = end.Next
 		}
 		this.end.Next = nodes
 		this.end = end
+		this.end.Next = nil
 	}
-	this.length++
+	this.length += amount
 }
 
 // Return the number of items in the queue
