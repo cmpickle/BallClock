@@ -1,4 +1,4 @@
-package BallClock
+package Clock
 
 import (
 	"testing"

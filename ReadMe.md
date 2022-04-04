@@ -78,3 +78,8 @@ The second mode takes two parameters, the number of balls and the number of minu
   - This returns the number of days (24 hour periods) until the balls repeat order
   ballClock --timedOutput {numBalls} {minutes}
   - This returns the state of the ball clock in JSON format
+
+  build
+  `go build -o ballClock`
+  timed run
+  `time ./ballClock --repetitionTime 123`

@@ -2,12 +2,12 @@ package main
 
 import (
 	"testing"
-	"github.com/cmpickle/ballClock/go/ballClock/BallClock"
+
+	"cameronpickle.com/ballClock/Clock"
 )
 
 func BenchmarkTicks10(b *testing.B) {
-	var ballClock *BallClock.BallClock
-	ballClock = BallClock.New(123)
+	ballClock := Clock.New(123)
 	days := 0
 	for {
 		ballClock.Ticks(1440)

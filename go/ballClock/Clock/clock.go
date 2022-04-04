@@ -1,11 +1,11 @@
-package BallClock
+package Clock
 
 import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/cmpickle/ballClock/go/ballClock/collections/queue"
-	"github.com/cmpickle/ballClock/go/ballClock/collections/stack"
+	"cameronpickle.com/ballClock/collections/queue"
+	"cameronpickle.com/ballClock/collections/stack"
 )
 
 type BallClock struct {
